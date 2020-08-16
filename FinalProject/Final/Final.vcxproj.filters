@@ -48,6 +48,9 @@
     <ClCompile Include="CVEHICLE.cpp">
       <Filter>Resource Files\CVEHICLE</Filter>
     </ClCompile>
+    <ClCompile Include="CGAME.cpp">
+      <Filter>Resource Files\CGAME</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimal.h">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="CVEHICLE.h">
       <Filter>Resource Files\CVEHICLE</Filter>
+    </ClInclude>
+    <ClInclude Include="CGAME.h">
+      <Filter>Resource Files\CGAME</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
