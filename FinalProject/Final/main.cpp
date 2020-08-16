@@ -1,119 +1,6 @@
-
-#include "CAnimal.h"
 #include "Console.h"
-#include "CVEHICLE.h"
+#include "Control.h"
 
-void background()
-{
-	PlaySound(TEXT("a.wav"), NULL,SND_LOOP | SND_ASYNC);
-	
-}
-
-void init()
-{
-	for (int i = 0; i <= HEIGHT ; i++)
-		for (int j = 0; j <= WIDTH; j++)
-			buffer.square(i, j, ' ');
-}
-void displayAnimal(CBIRD b, CDINOSAUR d)
-{
-	//Draw background
-	for (int i = 0; i <= HEIGHT; i++)
-		for (int j = 0; j < WIDTH; j++)
-		{
-			if (i == 0 && j == WIDTH - 1) buffer.square(i, j, (char)187);
-			else if (i % 5 == 0)
-			{
-				if (j == WIDTH - 1) buffer.square(i, j, (char)185);
-				else buffer.square(i, j, (char)205);
-			}
-			else if (j == WIDTH - 1)
-			 buffer.square(i, j, (char)186);
-		}
-	//Draw Bird
-	b.Move(9);
-	//Draw Dinosaur
-	d.Move(10);
-
-	GotoXY(0, 0);
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		for (int j = 0; j < WIDTH; j++)
-		{
-			TextColor(buffer.table[i][j].color);
-			putchar(buffer.table[i][j].character);
-			buffer.table[i][j].character = ' ';
-		}
-		if (i < HEIGHT - 1)
-			putchar('\n');
-	}
-
-}
-
-void handleAnimal(CBIRD& b, CDINOSAUR& d)
-{
-	b.goRight();
-	if (b.getX() == WIDTH - lengthB) b.Update(1, 11);
-	d.goRight();
-	if (d.getX() == WIDTH - lengthD) d.Update(1, 21);
-}
-
-void displayVehicle(vector<CTRUCK> tArr, CCAR c, CTRAFFICLIGHT light)
-{
-	//Draw background
-	for (int i = 0; i <= HEIGHT; i++)
-		for (int j = 0; j < WIDTH; j++)
-		{
-			if (i == 0 && j == WIDTH - 1) buffer.square(i, j, (char)187);
-			else if (i % 5 == 0)
-			{
-				if (j == WIDTH - 1) buffer.square(i, j, (char)185);
-				else buffer.square(i, j, (char)205);
-			}
-			else if (j == WIDTH - 1)
-				buffer.square(i, j, (char)186);
-		}
-
-	//Draw Truck
-	for (int i = 0; i < tArr.size(); i++)
-		tArr[i].Move(11);
-	//Draw Car
-	c.Move(12);
-	//Draw light
-	light.print(WIDTH, 6);
-	light.print(WIDTH, 16);
-
-	GotoXY(0, 0);
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		for (int j = 0; j < WIDTH; j++)
-		{
-			TextColor(buffer.table[i][j].color);
-			putchar(buffer.table[i][j].character);
-			buffer.table[i][j].character = ' ';
-		}
-		if (i < HEIGHT - 1)
-			putchar('\n');
-	}
-
-}
-
-void handleVehicle(vector<CTRUCK>& tArr, CCAR& c, CTRAFFICLIGHT& light)
-{
-	for (int i = 0; i < tArr.size(); i++)
-	{
-		tArr[i].goRight(light);
-		if (tArr[i].getX() == WIDTH - lengthT) tArr[i].Update(1, 6);
-	}
-	c.goRight(light);
-	if (c.getX() == WIDTH - lengthC) c.Update(1, 16);
-	if (light.isRed()) {
-		Sleep(2000);
-		light.changeColor();
-	}
-	else if (tArr[0].getX() % 20 == 0)
-		light.changeColor();
-}
 
 int main()
 {
@@ -123,13 +10,28 @@ int main()
 	ShowScrollBar(GetConsoleWindow(), SB_BOTH, 0);
 	system("title Game");
 	init();
-	CBIRD b;
-	CDINOSAUR d;
+	int level = 3;
+	CTRAFFICLIGHT light;
+
+	//vector<CBIRD> bArr;
+	//vector<CDINOSAUR> dArr;
+	vector<CTRUCK> tArr;
+	vector<CCAR> cArr;
+
+	//function update level for animal
+	//levelUp_animal(bArr, dArr, level);
+
+	//function update level for vehicle
+	levelUp_vehicle(tArr, cArr, level);
+
+	
 	while (1)
 	{
-		displayAnimal(b,d);
-		handleAnimal(b,d);
-		Sleep(5);
+		displayVehicle(tArr, cArr, light);
+		handleVehicle(tArr, cArr, light);
+		/*displayAnimal(bArr, dArr);
+		handleAnimal(bArr, dArr);*/
+		//Sleep(500);
 	}
 
 	/*HANDLE h = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)printB, NULL, NULL,NULL);

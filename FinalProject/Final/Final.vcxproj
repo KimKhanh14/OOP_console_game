@@ -144,6 +144,7 @@
     <ClCompile Include="CAnimal.cpp" />
     <ClCompile Include="CDRAW.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Control.cpp" />
     <ClCompile Include="CVEHICLE.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CGAME.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="CAnimal.h" />
     <ClInclude Include="CDRAW.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="Control.h" />
     <ClInclude Include="CVEHICLE.h" />
     <ClInclude Include="CGAME.h" />
   </ItemGroup>

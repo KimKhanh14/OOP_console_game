@@ -65,6 +65,6 @@ void CDINOSAUR::Move (int color)
 
 void CDINOSAUR::Tell()
 {
-	PlaySound(TEXT("Dinosaur.wav"), NULL, SND_ASYNC);
-	Sleep(3000);
+	/*PlaySound(TEXT("Dinosaur.wav"), NULL, SND_ASYNC);
+	Sleep(3000);*/
 }

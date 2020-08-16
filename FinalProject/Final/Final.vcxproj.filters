@@ -31,6 +31,9 @@
     <Filter Include="Resource Files\CGAME">
       <UniqueIdentifier>{5b921a24-3f6f-4af5-a81f-b9861ea5ee1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Control">
+      <UniqueIdentifier>{ab150634-bc8f-409a-9a30-87e7e9772341}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="CGAME.cpp">
       <Filter>Resource Files\CGAME</Filter>
     </ClCompile>
+    <ClCompile Include="Control.cpp">
+      <Filter>Resource Files\Control</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimal.h">
@@ -67,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="CGAME.h">
       <Filter>Resource Files\CGAME</Filter>
+    </ClInclude>
+    <ClInclude Include="Control.h">
+      <Filter>Resource Files\Control</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

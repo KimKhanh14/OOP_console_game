@@ -10,8 +10,8 @@
 #include "CDRAW.h"
 using namespace std;
 
-#define HEIGHT 30
-#define WIDTH 80
+//#define HEIGHT 30
+//#define WIDTH 80
 #define lengthB 6
 #define lengthD 8
 
