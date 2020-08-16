@@ -59,9 +59,9 @@ void CDINOSAUR::Move (int color)
 	buffer.square(y + 3, x+3, '_', color);
 	buffer.square(y + 3, x+4, '/', color);
 
-	buffer.square(y + 4, x + 1, '/', color);
+	/*buffer.square(y + 4, x + 1, '/', color);
 	buffer.square(y + 4, x + 2, ' ', color);
-	buffer.square(y + 4, x + 3, '/', color);
+	buffer.square(y + 4, x + 3, '/', color);*/
 }
 
 

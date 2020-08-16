@@ -27,6 +27,10 @@ void ShowCur(bool CursorVisibility);
 //Vo hieu hoa boi den
 void DisableSelection();
 
+//Set color
+void SetColor(int backgound_color, int text_color);
+
+
 //Ke duong thang
 //Mode 1: ke ngang, 2: ke doc
 void Line(int x, int y, int length, int mode);

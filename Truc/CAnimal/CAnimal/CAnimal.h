@@ -40,7 +40,7 @@ public:
 class CDINOSAUR : public CANIMAL
 {
 public:
-	CDINOSAUR() : CDINOSAUR(1,20) {};
+	CDINOSAUR() : CDINOSAUR(1,21) {};
 	CDINOSAUR(int x, int y) : CANIMAL(x, y) {}
 	void Move(int color);
 	void Tell();

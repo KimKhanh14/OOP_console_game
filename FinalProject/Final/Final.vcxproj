@@ -143,12 +143,14 @@
     <ClCompile Include="CAnimal.cpp" />
     <ClCompile Include="CDRAW.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="CVEHICLE.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimal.h" />
     <ClInclude Include="CDRAW.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="CVEHICLE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
