@@ -167,10 +167,8 @@ class CVEHICLE
 {
 private:
 	int mX, mY;
-protected:
-	int length;
 public:
-	CVEHICLE() : mX(1), mY(0), length(12) {}
+	CVEHICLE() : mX(1), mY(0) {}
 	CVEHICLE(int x, int y) : mX(x), mY(y) {}
 	virtual void Move(int color) = 0;
 	void Update(int x, int y);
@@ -179,13 +177,12 @@ public:
 	}
 	int getX() { return mX; }
 	int getY() { return mY; }
-	int getLength() { return length; }
 };
 
 class CTRUCK : public CVEHICLE
 {
 public:
-	CTRUCK() : CVEHICLE(1, 6) { length = lengthT; }
+	CTRUCK() : CVEHICLE(1, 6) {}
 	CTRUCK(int x, int y) : CVEHICLE(x, y) {}
 	void Move(int color);
 };
@@ -193,7 +190,7 @@ public:
 class CCAR : public CVEHICLE
 {
 public:
-	CCAR() : CVEHICLE(1, 16) { length = lengthC; };
+	CCAR() : CVEHICLE(1, 16) {};
 	CCAR(int x, int y) : CVEHICLE(x, y) {}
 	void Move(int color);
 };
