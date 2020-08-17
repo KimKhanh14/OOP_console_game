@@ -15,27 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CAnimal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CDRAW.cpp">
+    <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CAnimal.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Console.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CDRAW.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
