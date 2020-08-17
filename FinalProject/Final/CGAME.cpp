@@ -13,6 +13,15 @@ CGAME::CGAME()
 	updateLevel(car, 16, level);
 }
 
+CGAME::~CGAME()
+{}
+
+void CGAME::drawGame()
+{
+	for (int i = 0; i <= HEIGHT; i++)
+		for (int j = 0; j <= WIDTH; j++)
+			buffer.square(i, j, ' ');
+}
 void CGAME::resetGame()
 {
 
@@ -77,7 +86,7 @@ void CGAME::resumeGame(HANDLE thread)
 
 }
 
-void CGAME::updatePosVehicle()
+void CGAME::updatePosAnimal()
 {
 	//bird
 	for (int i = 0; i < bird.size(); i++) {
@@ -94,7 +103,7 @@ void CGAME::updatePosVehicle()
 	}
 }
 
-void CGAME::updatePosAnimal()
+void CGAME::updatePosVehicle()
 {
 	//truck
 	for (int i = 0; i < truck.size(); i++)

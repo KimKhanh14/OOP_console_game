@@ -7,7 +7,9 @@
 //#include <vector>
 #include <thread>
 #include "CVEHICLE.h"
-#include "CAnimal.h"
+//#include "CAnimal.h"
+//#include "CVEHICLE.h"
+#include "Control.h" //M chuyen ham LevelUp qua CGAME thi khong can include control.h nua
 #include "Console.h"
 
 using namespace std;

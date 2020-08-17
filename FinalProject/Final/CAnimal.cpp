@@ -31,8 +31,8 @@ void CBIRD::Move( int color)
 
 void CBIRD::Tell()
 {
-	/*PlaySound(TEXT("Bird.wav"), NULL, SND_ASYNC);
-	Sleep(3000);*/
+	PlaySound(TEXT("Bird.wav"), NULL, SND_ASYNC);
+	//Sleep(3000);
 }
 
 void CDINOSAUR::Move (int color)
@@ -65,6 +65,6 @@ void CDINOSAUR::Move (int color)
 
 void CDINOSAUR::Tell()
 {
-	/*PlaySound(TEXT("Dinosaur.wav"), NULL, SND_ASYNC);
-	Sleep(3000);*/
+	PlaySound(TEXT("Dinosaur.wav"), NULL, SND_ASYNC);
+	//Sleep(3000);
 }
