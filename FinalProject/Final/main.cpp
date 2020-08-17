@@ -1,6 +1,6 @@
 #include "Console.h"
 #include "Control.h"
-
+//#include "CGAME.h"
 
 int main()
 {
@@ -27,6 +27,16 @@ int main()
 		handle(bArr, dArr, tArr, cArr, light);
 		Sleep(100);
 	}
+
+	/*CGAME game;
+
+	while (1)
+	{
+		game.startGame();
+		game.updatePosVehicle();
+		game.updatePosAnimal();
+		Sleep(100);
+	}*/
 
 	/*HANDLE h = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)printB, NULL, NULL,NULL);
 	HANDLE h1 = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)printD, NULL, NULL, NULL);

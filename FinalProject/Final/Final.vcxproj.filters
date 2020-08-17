@@ -57,6 +57,9 @@
     <ClCompile Include="Control.cpp">
       <Filter>Resource Files\Control</Filter>
     </ClCompile>
+    <ClCompile Include="CPEOPLE.cpp">
+      <Filter>Resource Files\CPEOPLE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimal.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="Control.h">
       <Filter>Resource Files\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="CPEOPLE.h">
+      <Filter>Resource Files\CPEOPLE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
