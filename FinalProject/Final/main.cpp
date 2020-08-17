@@ -13,25 +13,19 @@ int main()
 	int level = 3;
 	CTRAFFICLIGHT light;
 
-	//vector<CBIRD> bArr;
-	//vector<CDINOSAUR> dArr;
+	vector<CBIRD> bArr;
+	vector<CDINOSAUR> dArr;
 	vector<CTRUCK> tArr;
 	vector<CCAR> cArr;
 
-	//function update level for animal
-	//levelUp_animal(bArr, dArr, level);
-
-	//function update level for vehicle
-	levelUp_vehicle(tArr, cArr, level);
+	levelUp(bArr, dArr, tArr, cArr, level);
 
 	
 	while (1)
 	{
-		displayVehicle(tArr, cArr, light);
-		handleVehicle(tArr, cArr, light);
-		/*displayAnimal(bArr, dArr);
-		handleAnimal(bArr, dArr);*/
-		//Sleep(500);
+		display(bArr, dArr, tArr, cArr, light);
+		handle(bArr, dArr, tArr, cArr, light);
+		Sleep(100);
 	}
 
 	/*HANDLE h = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)printB, NULL, NULL,NULL);

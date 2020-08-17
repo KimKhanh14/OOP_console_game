@@ -14,7 +14,7 @@ void init()
 }
 
 //display and handle animal
-void displayAnimal(vector<CBIRD> bArr, vector<CDINOSAUR> dArr)
+void display(vector<CBIRD> bArr, vector<CDINOSAUR> dArr, vector<CTRUCK> tArr, vector<CCAR> cArr, CTRAFFICLIGHT light)
 {
 	//Draw background
 	for (int i = 0; i <= HEIGHT; i++)
@@ -35,50 +35,6 @@ void displayAnimal(vector<CBIRD> bArr, vector<CDINOSAUR> dArr)
 	//Draw Dinosaur
 	for (int i = 0; i < dArr.size(); i++)
 		dArr[i].Move(10);
-
-	GotoXY(0, 0);
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		for (int j = 0; j < WIDTH; j++)
-		{
-			TextColor(buffer.table[i][j].color);
-			putchar(buffer.table[i][j].character);
-			buffer.table[i][j].character = ' ';
-		}
-		if (i < HEIGHT - 1)
-			putchar('\n');
-	}
-
-}
-void handleAnimal(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr)
-{
-	for (int i = 0; i < bArr.size(); i++) {
-		bArr[i].goRight();
-		if (bArr[i].getX() == WIDTH - lengthB) bArr[i].Update(1, 11);
-	}
-	for (int i = 0; i < dArr.size(); i++) {
-		dArr[i].goRight();
-		if (dArr[i].getX() == WIDTH - lengthD) dArr[i].Update(1, 21);
-	}
-}
-
-//display anf handle vehicle
-void displayVehicle(vector<CTRUCK> tArr, vector<CCAR> cArr, CTRAFFICLIGHT light)
-{
-	//Draw background
-	for (int i = 0; i <= HEIGHT; i++)
-		for (int j = 0; j < WIDTH; j++)
-		{
-			if (i == 0 && j == WIDTH - 1) buffer.square(i, j, (char)187);
-			else if (i % 5 == 0)
-			{
-				if (j == WIDTH - 1) buffer.square(i, j, (char)185);
-				else buffer.square(i, j, (char)205);
-			}
-			else if (j == WIDTH - 1)
-				buffer.square(i, j, (char)186);
-		}
-
 	//Draw Truck
 	for (int i = 0; i < tArr.size(); i++)
 		tArr[i].Move(11);
@@ -103,24 +59,34 @@ void displayVehicle(vector<CTRUCK> tArr, vector<CCAR> cArr, CTRAFFICLIGHT light)
 	}
 
 }
-
-void handleVehicle(vector<CTRUCK>& tArr, vector<CCAR>& cArr, CTRAFFICLIGHT& light)
+void handle(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, vector<CTRUCK>& tArr, vector<CCAR>& cArr, CTRAFFICLIGHT& light)
 {
+	//bird
+	for (int i = 0; i < bArr.size(); i++) {
+		bArr[i].goRight();
+		if (bArr[i].getX() == WIDTH - lengthB) bArr[i].Update(1, 11);
+	}
+	//dinosaur
+	for (int i = 0; i < dArr.size(); i++) {
+		dArr[i].goRight();
+		if (dArr[i].getX() == WIDTH - lengthD) dArr[i].Update(1, 21);
+	}
+	//truck
 	for (int i = 0; i < tArr.size(); i++)
 	{
 		tArr[i].goRight(light);
 		if (tArr[i].getX() == WIDTH - lengthT) tArr[i].Update(1, 6);
 	}
+	//car
 	for (int i = 0; i < cArr.size(); i++) {
 		cArr[i].goRight(light);
 		if (cArr[i].getX() == WIDTH - lengthC) cArr[i].Update(1, 16);
 	}
-	if (light.isRed()) {
-		Sleep(2000);
+
+	if (bArr[0].getX() % 20 == 0) {
 		light.changeColor();
 	}
-	else if (tArr[0].getX() % 20 == 0)
-		light.changeColor();
+
 }
 
 //tang so con trong array, CGAME khong
@@ -133,13 +99,10 @@ void updateLevel(vector<T>& arr, int lane, int level) {
 }
 
 //tang level
-void levelUp_animal(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, int level) {
+void levelUp(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, vector<CTRUCK>& tArr, vector<CCAR>& cArr, int level) {
 	updateLevel(bArr, 11, level);
 	updateLevel(dArr, 21, level);
-}
-void levelUp_vehicle(vector<CTRUCK>& tArr, vector<CCAR>& cArr, int level) {
 	if (level == 3) updateLevel(tArr, 6, level - 1);	//level 3 -> 2 trucks
 	else updateLevel(tArr, 6, level);
-
 	updateLevel(cArr, 16, level);
 }
