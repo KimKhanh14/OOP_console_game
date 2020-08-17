@@ -145,9 +145,9 @@ using namespace std;
 
 class CTRAFFICLIGHT {
 private:
-	bool red = true;
+	bool red;
 public:
-	CTRAFFICLIGHT() :red(true) {};
+	CTRAFFICLIGHT() :red(false) {};
 	bool isRed() { return red; }
 	void changeColor() { red = !red; }
 	void print(int x, int y) {
