@@ -132,3 +132,19 @@ void CGAME::updatePosPeople()
 		else player.Down();
 	}
 }
+
+bool CGAME::endGame()
+{
+	if (player.getY() == 21) player.isImpact(dinosaur);
+	else if (player.getY() == 16) player.isImpact(car);
+	else if (player.getY() == 11) player.isImpact(bird);
+	else player.isImpact(truck);
+	if (player.isDead()) return true;
+	return false;
+}
+
+bool CGAME::levelUp()
+{
+	if (player.isFinish()) return true;
+	return false;
+}

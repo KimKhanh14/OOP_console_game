@@ -17,8 +17,7 @@ void CPEOPLE::Draw(int color)
 }
 void CPEOPLE::Up()
 {
-	mY -= 5;
-	if (1 <= mY && mY <= 5) isFinished = true;
+	if (mY >= 6) mY -= 5;
 }
 void CPEOPLE::Down()
 {
@@ -35,18 +34,79 @@ void CPEOPLE::Right()
 }
 bool CPEOPLE::isDead()
 {
-	return State;
+	return (!State);
 }
 bool CPEOPLE::isFinish()
 {
+	if (mY == 1) isFinished = true;
 	return isFinished;
 }
 
-//bool CPEOPLE::isImpact(vector<CANIMAL>& a)
-//{
-//	//for (int i = 0; i < a.size(); i++)
-//
-//}
-//bool CPEOPLE::isImpact(vector<CVEHICLE>& v)
-//{}
 
+void CPEOPLE::isImpact(vector<CBIRD>& b)
+{
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
+		{
+			State = true;
+		}
+		else
+		{
+			State = false;
+			return;
+		}
+	}
+}
+
+void CPEOPLE::isImpact(vector<CDINOSAUR>& b)
+{
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
+		{
+			State = true;
+		}
+		else
+		{
+			State = false;
+			return;
+		}
+	}
+}
+
+void CPEOPLE::isImpact(vector<CTRUCK>& b)
+{
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
+		{
+			State = true;
+		}
+		else
+		{
+			State = false;
+			return;
+		}
+	}
+}
+
+void CPEOPLE::isImpact(vector<CCAR>& b)
+{
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
+		{
+			State = true;
+		}
+		else
+		{
+			State = false;
+			return;
+		}
+	}
+}

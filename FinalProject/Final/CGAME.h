@@ -49,6 +49,8 @@ public:
 	void saveGame(istream);
 	void pauseGame(HANDLE thread);
 	void resumeGame(HANDLE thread);
+	bool endGame();
+	bool levelUp();
 	void updatePosPeople();
 	void updatePosVehicle();
 	void updatePosAnimal();

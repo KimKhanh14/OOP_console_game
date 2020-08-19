@@ -35,6 +35,12 @@ int main()
 		game.startGame();
 		game.updatePosVehicle();
 		game.updatePosAnimal();
+		if (game.endGame())
+		{
+			cout << "End Game";
+			break;
+		}
+		if (game.levelUp()) cout << "Level up";
 		game.updatePosPeople();
 		Sleep(100);
 	}

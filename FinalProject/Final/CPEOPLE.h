@@ -25,8 +25,10 @@ public:
 	void Right();
 	bool isDead();
 	bool isFinish();
-	bool isImpact(vector<CANIMAL>& a);
-	bool isImpact(vector<CVEHICLE>& v);
+	int getY() { return mY; }
+	void isImpact(vector<CBIRD>& b);
+	void isImpact(vector<CDINOSAUR>& b);
+	void isImpact(vector<CTRUCK>& b);
+	void isImpact(vector<CCAR>& b);
 };
-
 #endif

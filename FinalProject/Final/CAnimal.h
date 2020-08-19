@@ -21,6 +21,7 @@ public:
 	CANIMAL(int x, int y) : mX(x), mY(y) {}
 	virtual void Move(int color) = 0;
 	virtual void Tell() = 0;	void Update(int x, int y);
+	virtual int getLength() = 0;
 	void goRight() { mX++; }
 	int getX() { return mX; }
 	int getY() { return mY; }
@@ -33,6 +34,7 @@ public:
 	CBIRD(int x, int y) : CANIMAL(x,y) {}
 	void Move(int color);
 	void Tell();
+	int getLength() { return lengthB; }
 };
 
 class CDINOSAUR : public CANIMAL
@@ -42,6 +44,7 @@ public:
 	CDINOSAUR(int x, int y) : CANIMAL(x, y) {}
 	void Move(int color);
 	void Tell();
+	int getLength() { return lengthD; }
 };
 
 #endif
