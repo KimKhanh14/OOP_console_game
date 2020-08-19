@@ -9,7 +9,7 @@ int main()
 	DisableSelection();
 	ShowScrollBar(GetConsoleWindow(), SB_BOTH, 0);
 	system("title CROSSING ROAD");
-	init();
+
 	int level = 3;
 	CTRAFFICLIGHT light;
 
@@ -35,6 +35,7 @@ int main()
 		game.startGame();
 		game.updatePosVehicle();
 		game.updatePosAnimal();
+		game.updatePosPeople();
 		Sleep(100);
 	}
 

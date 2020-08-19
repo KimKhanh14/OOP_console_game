@@ -62,6 +62,9 @@ void CGAME::startGame()
 	light.print(WIDTH, 6);
 	light.print(WIDTH, 16);
 
+	//Draw people
+	player.Draw(15);
+
 	GotoXY(0, 0);
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -115,5 +118,17 @@ void CGAME::updatePosVehicle()
 	for (int i = 0; i < car.size(); i++) {
 		car[i].goRight(light);
 		if (car[i].getX() == WIDTH - lengthC) car[i].Update(1, 16);
+	}
+}
+
+void CGAME::updatePosPeople()
+{
+	if (_kbhit())
+	{
+		int key = _getch();
+		if (key == 'A' || key == 'a') player.Left();
+		else if (key == 'W' || key == 'w') player.Up();
+		else if (key == 'D' || key == 'd') player.Right();
+		else player.Down();
 	}
 }

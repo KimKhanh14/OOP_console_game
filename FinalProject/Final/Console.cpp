@@ -64,23 +64,7 @@ void SetColor(int backgound_color, int text_color)
 	SetConsoleTextAttribute(hStdout, color_code);
 }
 
-void Line(int x, int y, int length, int mode)
-{
-	if (mode == 1)
-	{
-		GotoXY(x, y);
-		for (int i = 0; i < length; i++) cout << (char) 196;
-	}
-	else
-	{
-		
-		for (int i = 0; i < length; i++)
-		{
-			GotoXY(x, y+i);
-			cout << (char) 179;
-		}
-	}
-}
+
 
 
 

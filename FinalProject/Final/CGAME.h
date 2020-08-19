@@ -11,6 +11,7 @@
 //#include "CVEHICLE.h"
 #include "Control.h" //M chuyen ham LevelUp qua CGAME thi khong can include control.h nua
 #include "Console.h"
+//#include "CPEOPLE.h"
 
 using namespace std;
 
@@ -32,6 +33,7 @@ private:
 	vector <CDINOSAUR> dinosaur;
 	vector <CBIRD> bird;
 	CTRAFFICLIGHT light;
+	CPEOPLE player; 
 	int level;
 public:
 	CGAME();
@@ -47,7 +49,7 @@ public:
 	void saveGame(istream);
 	void pauseGame(HANDLE thread);
 	void resumeGame(HANDLE thread);
-	void updatePosPeople(char);
+	void updatePosPeople();
 	void updatePosVehicle();
 	void updatePosAnimal();
 };
