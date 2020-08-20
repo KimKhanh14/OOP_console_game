@@ -5,11 +5,12 @@ CGAME::CGAME()
 	for (int i = 0; i <= HEIGHT; i++)
 		for (int j = 0; j <= WIDTH; j++)
 			buffer.square(i, j, ' ');
-	level = 3;
+	level = 1;
 	updateLevel(bird, 11, level);
 	updateLevel(dinosaur, 21, level);
-	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level);
+	//if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
+	//else 
+	updateLevel(truck, 6, level);
 	updateLevel(car, 16, level);
 }
 
@@ -131,6 +132,18 @@ void CGAME::updatePosPeople()
 		else if (key == 'D' || key == 'd') player.Right();
 		else player.Down();
 	}
+}
+
+void CGAME::UpLevel()
+{
+	level += 1;
+	updateLevel(bird, 11, 1);
+	updateLevel(dinosaur, 21, 1);
+	//if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
+	//else 
+	updateLevel(truck, 6, 1);
+	updateLevel(car, 16, 1);
+	player.Reset();
 }
 
 bool CGAME::endGame()

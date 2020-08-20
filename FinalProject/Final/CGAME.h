@@ -4,14 +4,13 @@
 //#include <iostream>
 //#include <fstream>
 //#include <Windows.h>
-//#include <vector>
+#include <vector>
 #include <thread>
-#include "CVEHICLE.h"
+//#include "CVEHICLE.h"
 //#include "CAnimal.h"
 //#include "CVEHICLE.h"
-#include "Control.h" //M chuyen ham LevelUp qua CGAME thi khong can include control.h nua
 #include "Console.h"
-//#include "CPEOPLE.h"
+#include "CPEOPLE.h"
 
 using namespace std;
 
@@ -39,7 +38,7 @@ public:
 	CGAME();
 	void drawGame();
 	~CGAME();
-	//CPEOPLE getPEOPLE();
+	CPEOPLE getPEOPLE();
 	vector <CVEHICLE> getVehicle();
 	vector <CANIMAL> getAnimal();
 	void resetGame();
@@ -49,6 +48,7 @@ public:
 	void saveGame(istream);
 	void pauseGame(HANDLE thread);
 	void resumeGame(HANDLE thread);
+	void UpLevel();
 	bool endGame();
 	bool levelUp();
 	void updatePosPeople();

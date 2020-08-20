@@ -1,5 +1,5 @@
 #include "Console.h"
-#include "Control.h"
+//#include "Control.h"
 #include "CGAME.h"
 
 int main()
@@ -40,7 +40,11 @@ int main()
 			cout << "End Game";
 			break;
 		}
-		if (game.levelUp()) cout << "Level up";
+		if (game.levelUp())
+		{
+			cout << "Level up";
+			game.UpLevel();
+		}
 		game.updatePosPeople();
 		Sleep(100);
 	}

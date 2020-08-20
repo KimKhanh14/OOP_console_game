@@ -25,6 +25,7 @@ public:
 	void Right();
 	bool isDead();
 	bool isFinish();
+	void Reset();
 	int getY() { return mY; }
 	void isImpact(vector<CBIRD>& b);
 	void isImpact(vector<CDINOSAUR>& b);

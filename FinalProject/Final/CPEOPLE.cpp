@@ -42,6 +42,13 @@ bool CPEOPLE::isFinish()
 	return isFinished;
 }
 
+void CPEOPLE::Reset()
+{
+	mX = WIDTH / 2;
+	mY = 26;
+	State = true;
+	isFinished = false;
+}
 
 void CPEOPLE::isImpact(vector<CBIRD>& b)
 {
