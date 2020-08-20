@@ -10,15 +10,15 @@ int main()
 	ShowScrollBar(GetConsoleWindow(), SB_BOTH, 0);
 	system("title CROSSING ROAD");
 
-	int level = 3;
-	CTRAFFICLIGHT light;
+	//int level = 3;
+	/*CTRAFFICLIGHT light;
 
 	vector<CBIRD> bArr;
 	vector<CDINOSAUR> dArr;
 	vector<CTRUCK> tArr;
-	vector<CCAR> cArr;
+	vector<CCAR> cArr;*/
 
-	levelUp(bArr, dArr, tArr, cArr, level);
+	//levelUp(bArr, dArr, tArr, cArr, level);
 
 	
 	/*while (1)

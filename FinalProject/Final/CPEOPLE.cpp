@@ -47,11 +47,9 @@ void CPEOPLE::isImpact(vector<CBIRD>& b)
 {
 	for (int i = 0; i < b.size(); i++)
 	{
-		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength() - 1 ||
 			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
-		{
 			State = true;
-		}
 		else
 		{
 			State = false;
@@ -64,11 +62,9 @@ void CPEOPLE::isImpact(vector<CDINOSAUR>& b)
 {
 	for (int i = 0; i < b.size(); i++)
 	{
-		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength() - 1 ||
 			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
-		{
 			State = true;
-		}
 		else
 		{
 			State = false;
@@ -81,11 +77,9 @@ void CPEOPLE::isImpact(vector<CTRUCK>& b)
 {
 	for (int i = 0; i < b.size(); i++)
 	{
-		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength() - 1 ||
 			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
-		{
 			State = true;
-		}
 		else
 		{
 			State = false;
@@ -98,11 +92,9 @@ void CPEOPLE::isImpact(vector<CCAR>& b)
 {
 	for (int i = 0; i < b.size(); i++)
 	{
-		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength()-1 ||
+		if (mX + 3 < b[i].getX() || mX > b[i].getX() + b[i].getLength() - 1 ||
 			mY + 3 < b[i].getY() || mY > b[i].getY() + heightO)
-		{
 			State = true;
-		}
 		else
 		{
 			State = false;
