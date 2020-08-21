@@ -27,7 +27,7 @@ int main()
 		handle(bArr, dArr, tArr, cArr, light);
 		Sleep(100);
 	}*/
-
+	int k;
 	CGAME game;
 	game.drawGame();
 	while (1)
@@ -37,12 +37,26 @@ int main()
 		game.updatePosAnimal();
 		if (game.endGame())
 		{
-			cout << "End Game";
-			break;
+			GotoXY(96, 17);
+			cout << "GAME OVER!";
+			GotoXY(93, 18);
+			cout << "PRESS Y TO RESTART";
+			if (_kbhit)
+			{
+				int k = _getch();
+				if (k == 'Y' || k == 'y')
+				{
+					//restart game - them ham vo day nhe
+					GotoXY(93, 19);
+					cout << "Restart!";
+				}
+			}
+			
 		}
 		if (game.levelUp())
 		{
-			cout << "Level up";
+			GotoXY(96, 17);
+			cout << "LEVEL UP!";
 			game.UpLevel();
 		}
 		game.updatePosPeople();

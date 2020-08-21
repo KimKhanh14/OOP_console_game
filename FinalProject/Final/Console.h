@@ -44,5 +44,4 @@ void DisableSelection();
 //Set color
 void SetColor(int backgound_color, int text_color);
 
-
 #endif

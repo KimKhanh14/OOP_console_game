@@ -78,6 +78,68 @@ void CGAME::startGame()
 		if (i < HEIGHT - 1)
 			putchar('\n');
 	}
+
+	//Draw scoreboard
+	GotoXY(86, 0);
+	for (int i = 0; i < 30; i++) cout << (char)196;
+	cout << (char)191;
+
+	GotoXY(86, 0); cout << (char) 218;
+	for (int i = 1; i < HEIGHT - 1; i++)
+	{
+		if (i == 10)
+		{
+			GotoXY(86, i);
+			cout << (char)195;
+		}
+		else
+		{
+			GotoXY(86, i);
+			cout << (char)179;
+		}
+		
+	}
+	GotoXY(86, HEIGHT - 1);
+	cout << (char)192;
+	for (int i = 0; i < 30; i++) cout << (char)196;
+	GotoXY(87, 10);
+	for (int i = 1; i < 30; i++) cout << (char)196;
+	for (int i = 1; i < HEIGHT - 1; i++)
+	{
+		if (i == 10)
+		{
+			GotoXY(116, i);
+			cout << (char)180;
+		}
+		else
+		{
+			GotoXY(116, i);
+			cout << (char)179;
+		}
+	}
+	GotoXY(116, HEIGHT - 1);
+	cout << (char)217;
+
+	//Information
+	TextColor(14);
+	GotoXY(96, 1);
+	cout << "INFORMATION: ";
+	TextColor(12);
+	GotoXY(87, 3);
+	cout << "LEVEL: " << level;
+	TextColor(11);
+	GotoXY(87, 4);
+	cout << "SCORE: ";
+	TextColor(7);
+	GotoXY(87, 6);
+	cout << "Press P to pause game";
+	GotoXY(87, 7);
+	cout << "Press R to resume game";
+	GotoXY(87, 8);
+	cout << "Press L to load game";
+	GotoXY(87, 9);
+	cout << "Press S to save game";
+
 }
 
 void CGAME::pauseGame(HANDLE thread)
