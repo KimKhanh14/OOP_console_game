@@ -8,9 +8,8 @@ CGAME::CGAME()
 	level = 1;
 	updateLevel(bird, 11, level);
 	updateLevel(dinosaur, 21, level);
-	//if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	//else 
-	updateLevel(truck, 6, level);
+	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level);
 	updateLevel(car, 16, level);
 }
 
@@ -19,18 +18,79 @@ CGAME::~CGAME()
 
 void CGAME::drawGame()
 {
-	for (int i = 0; i <= HEIGHT; i++)
-		for (int j = 0; j <= WIDTH; j++)
-			buffer.square(i, j, ' ');
+	//Draw scoreboard
+	GotoXY(86, 0);
+	for (int i = 0; i < 30; i++) cout << (char)196;
+	cout << (char)191;
+
+	GotoXY(86, 0); cout << (char)218;
+	for (int i = 1; i < HEIGHT - 1; i++)
+	{
+		if (i == 13)
+		{
+			GotoXY(86, i);
+			cout << (char)195;
+		}
+		else
+		{
+			GotoXY(86, i);
+			cout << (char)179;
+		}
+
+	}
+	GotoXY(86, HEIGHT - 1);
+	cout << (char)192;
+	for (int i = 0; i < 30; i++) cout << (char)196;
+	GotoXY(87, 13);
+	for (int i = 1; i < 30; i++) cout << (char)196;
+	for (int i = 1; i < HEIGHT - 1; i++)
+	{
+		if (i == 13)
+		{
+			GotoXY(116, i);
+			cout << (char)180;
+		}
+		else
+		{
+			GotoXY(116, i);
+			cout << (char)179;
+		}
+	}
+	GotoXY(116, HEIGHT - 1);
+	cout << (char)217;
+
+	//Information
+	TextColor(14);
+	GotoXY(96, 1);
+	cout << "INFORMATION: ";
+	TextColor(12);
+	GotoXY(87, 3);
+	cout << "LEVEL: " << level;
+	TextColor(11);
+	GotoXY(87, 4);
+	cout << "SCORE: ";
+	TextColor(7);
+	GotoXY(87, 6);
+	cout << "Press W to go straight";
+	GotoXY(87, 7);
+	cout << "Press S to go backward";
+	GotoXY(87, 8);
+	cout << "Press A to go left";
+	GotoXY(87, 9);
+	cout << "Press D to go right";
+	GotoXY(87, 10);
+	cout << "Press P to pause game";
+	GotoXY(87, 11);
+	cout << "Press E to exit game";
 }
 void CGAME::resetGame()
 {
-
+	player.Reset();
 }
 
-void CGAME::exitGame(HANDLE thread)
+void CGAME::exitGame()
 {
-	TerminateThread(thread, 0);
+	exit(0);
 }
 
 void CGAME::startGame()
@@ -78,78 +138,81 @@ void CGAME::startGame()
 		if (i < HEIGHT - 1)
 			putchar('\n');
 	}
-
-	//Draw scoreboard
-	GotoXY(86, 0);
-	for (int i = 0; i < 30; i++) cout << (char)196;
-	cout << (char)191;
-
-	GotoXY(86, 0); cout << (char) 218;
-	for (int i = 1; i < HEIGHT - 1; i++)
-	{
-		if (i == 10)
-		{
-			GotoXY(86, i);
-			cout << (char)195;
-		}
-		else
-		{
-			GotoXY(86, i);
-			cout << (char)179;
-		}
-		
-	}
-	GotoXY(86, HEIGHT - 1);
-	cout << (char)192;
-	for (int i = 0; i < 30; i++) cout << (char)196;
-	GotoXY(87, 10);
-	for (int i = 1; i < 30; i++) cout << (char)196;
-	for (int i = 1; i < HEIGHT - 1; i++)
-	{
-		if (i == 10)
-		{
-			GotoXY(116, i);
-			cout << (char)180;
-		}
-		else
-		{
-			GotoXY(116, i);
-			cout << (char)179;
-		}
-	}
-	GotoXY(116, HEIGHT - 1);
-	cout << (char)217;
-
-	//Information
-	TextColor(14);
-	GotoXY(96, 1);
-	cout << "INFORMATION: ";
-	TextColor(12);
-	GotoXY(87, 3);
-	cout << "LEVEL: " << level;
-	TextColor(11);
-	GotoXY(87, 4);
-	cout << "SCORE: ";
-	TextColor(7);
-	GotoXY(87, 6);
-	cout << "Press P to pause game";
-	GotoXY(87, 7);
-	cout << "Press R to resume game";
-	GotoXY(87, 8);
-	cout << "Press L to load game";
-	GotoXY(87, 9);
-	cout << "Press S to save game";
-
 }
 
-void CGAME::pauseGame(HANDLE thread)
+void CGAME::loadGame(int temp)
 {
-	SuspendThread(thread);
+	level = temp;
+	UpLevel();
+	int k;
+	while (1)
+	{
+		startGame();
+		drawGame();
+		updatePosVehicle();
+		updatePosAnimal();
+		if (endGame())
+		{
+			GotoXY(96, 20);
+			cout << "GAME OVER!";
+			GotoXY(88, 21);
+			cout << "    PRESS Y TO RESTART     ";
+			if (_kbhit)
+			{
+				int k = _getch();
+				if (k == 'Y' || k == 'y')
+				{
+					resetGame();
+					GotoXY(96, 20);
+					cout << "          ";
+					GotoXY(88, 21);
+					cout << "         Restart!          ";
+				}
+			}
+
+		}
+		if (levelUp())
+		{
+			GotoXY(88, 21);
+			cout << "         LEVEL UP!          ";
+			UpLevel();
+		}
+		updatePosPeople();
+		pauseGame();
+		saveGame();
+		Sleep(100);
+	}
 }
 
-void CGAME::resumeGame(HANDLE thread)
+void CGAME::saveGame()
 {
+	if (key == 'E' || key == 'e')
+	{
+		ofstream fo;
+		fo.open("SaveLevel.txt");
+		fo << level;
+		GotoXY(88, 21);
+		cout << "         Saved!         ";
+		fo.close();
+		exitGame();
+	}
+}
 
+void CGAME::pauseGame()
+{
+	if (key == 'P' || key == 'p')
+	{
+		GotoXY(88, 21);
+		cout << "PRESS P 2 TIMES TO CONTINUE";
+		int key1 = _getch();
+		if(key1!='P' || key1!='p')
+		{
+			key1 = _getch();
+		}
+		GotoXY(88, 21);
+		cout << "                            ";
+		key = '_';
+	}
 }
 
 void CGAME::updatePosAnimal()
@@ -188,22 +251,21 @@ void CGAME::updatePosPeople()
 {
 	if (_kbhit())
 	{
-		int key = _getch();
+		key = _getch();
 		if (key == 'A' || key == 'a') player.Left();
 		else if (key == 'W' || key == 'w') player.Up();
 		else if (key == 'D' || key == 'd') player.Right();
-		else player.Down();
+		else if (key == 'S' || key == 's') player.Down();
 	}
 }
 
 void CGAME::UpLevel()
 {
-	level++;
+	level+=1;
 	updateLevel(bird, 11, level);
 	updateLevel(dinosaur, 21, level);
-	//if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	//else 
-	updateLevel(truck, 6, level);
+	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level);
 	updateLevel(car, 16, level);
 	player.Reset();
 }
@@ -220,6 +282,7 @@ bool CGAME::endGame()
 
 bool CGAME::levelUp()
 {
-	if (player.isFinish()) return true;
+	if (player.isFinish()) 
+		return true;
 	return false;
 }

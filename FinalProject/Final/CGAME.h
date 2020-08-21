@@ -2,7 +2,7 @@
 #define _CGAME_H
 
 //#include <iostream>
-//#include <fstream>
+#include <fstream>
 //#include <Windows.h>
 #include <vector>
 #include <thread>
@@ -35,20 +35,17 @@ private:
 	CTRAFFICLIGHT light;
 	CPEOPLE player; 
 	int level;
+	int key;
 public:
 	CGAME();
 	void drawGame();
 	~CGAME();
-	CPEOPLE getPEOPLE();
-	vector <CVEHICLE> getVehicle();
-	vector <CANIMAL> getAnimal();
 	void resetGame();
-	void exitGame(HANDLE thread);
+	void exitGame();
 	void startGame();
-	void loadGame(istream);
-	void saveGame(istream);
-	void pauseGame(HANDLE thread);
-	void resumeGame(HANDLE thread);
+	void loadGame(int temp);
+	void saveGame();
+	void pauseGame();
 	void UpLevel();
 	bool endGame();
 	bool levelUp();

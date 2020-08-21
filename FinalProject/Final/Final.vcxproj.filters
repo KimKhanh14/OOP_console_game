@@ -34,6 +34,9 @@
     <Filter Include="Resource Files\Control">
       <UniqueIdentifier>{ab150634-bc8f-409a-9a30-87e7e9772341}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menu">
+      <UniqueIdentifier>{efe19a4f-9772-42df-8323-bd28289a5123}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="CPEOPLE.h">
       <Filter>Resource Files\CPEOPLE</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Resource Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
