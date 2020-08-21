@@ -18,6 +18,7 @@ template<class T>
 
 void updateLevel(vector<T>& arr, int lane, int level) 
 {
+	arr.clear();
 	for (int i = 0; i < level; i++) {
 		T tmp((i)*WIDTH / level, lane);
 		arr.push_back(tmp);

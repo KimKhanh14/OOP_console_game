@@ -92,6 +92,7 @@ void handle(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, vector<CTRUCK>& tArr, 
 //tang so con trong array, CGAME khong
 template<class T>
 void updateLevel(vector<T>& arr, int lane, int level) {
+	arr.clear();
 	for (int i = 0; i < level; i++) {
 		T tmp((i)*WIDTH / level, lane);
 		arr.push_back(tmp);
@@ -100,9 +101,11 @@ void updateLevel(vector<T>& arr, int lane, int level) {
 
 //tang level
 void levelUp(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, vector<CTRUCK>& tArr, vector<CCAR>& cArr, int level) {
-	updateLevel(bArr, 11, level);
-	updateLevel(dArr, 21, level);
-	if (level == 3) updateLevel(tArr, 6, level - 1);	//level 3 -> 2 trucks
-	else updateLevel(tArr, 6, level);
-	updateLevel(cArr, 16, level);
+	if (level <= 3) {
+		updateLevel(bArr, 11, level);
+		updateLevel(dArr, 21, level);
+		if (level == 3) updateLevel(tArr, 6, level - 1);	//level 3 -> 2 trucks
+		else updateLevel(tArr, 6, level);
+		updateLevel(cArr, 16, level);
+	}
 }

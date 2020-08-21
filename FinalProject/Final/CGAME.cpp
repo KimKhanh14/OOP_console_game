@@ -198,13 +198,13 @@ void CGAME::updatePosPeople()
 
 void CGAME::UpLevel()
 {
-	level += 1;
-	updateLevel(bird, 11, 1);
-	updateLevel(dinosaur, 21, 1);
+	level++;
+	updateLevel(bird, 11, level);
+	updateLevel(dinosaur, 21, level);
 	//if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
 	//else 
-	updateLevel(truck, 6, 1);
-	updateLevel(car, 16, 1);
+	updateLevel(truck, 6, level);
+	updateLevel(car, 16, level);
 	player.Reset();
 }
 
