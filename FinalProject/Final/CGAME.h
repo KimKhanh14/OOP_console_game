@@ -54,4 +54,7 @@ public:
 	void updatePosAnimal();
 };
 
+void printLose();
+void printWin();
+
 #endif

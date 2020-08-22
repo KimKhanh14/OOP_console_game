@@ -153,23 +153,12 @@ void CGAME::loadGame(int temp)
 		updatePosAnimal();
 		if (endGame())
 		{
-			GotoXY(96, 20);
-			cout << "GAME OVER!";
-			GotoXY(88, 21);
-			cout << "    PRESS Y TO RESTART     ";
-			if (_kbhit)
-			{
-				int k = _getch();
-				if (k == 'Y' || k == 'y')
-				{
-					resetGame();
-					GotoXY(96, 20);
-					cout << "          ";
-					GotoXY(88, 21);
-					cout << "         Restart!          ";
-				}
-			}
-
+			ofstream fo;
+			fo.open("SaveLevel.txt");
+			fo << 1;
+			fo.close();
+			printLose();
+			exitGame();
 		}
 		if (levelUp())
 		{
@@ -262,6 +251,14 @@ void CGAME::updatePosPeople()
 void CGAME::UpLevel()
 {
 	level+=1;
+	if (level > 4) {
+		ofstream fo;
+		fo.open("SaveLevel.txt");
+		fo << 1;
+		fo.close();
+		printWin();
+		exitGame();
+	}
 	updateLevel(bird, 11, level);
 	updateLevel(dinosaur, 21, level);
 	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
@@ -285,4 +282,46 @@ bool CGAME::levelUp()
 	if (player.isFinish()) 
 		return true;
 	return false;
+}
+
+void printLose()
+{
+		
+			//Ve tieu de Lose
+	GotoXY(50, 10);
+	cout << "                                     ";
+	GotoXY(50, 11);
+	TextColor(14);
+	cout << " _|       _|_|_|_| _|_|_|_| _|_|_|_| ";
+	GotoXY(50, 12);
+	cout << " _|       _|    _| _|       _|       ";
+	GotoXY(50, 13);
+	cout << " _|       _|    _| _|_|_|_| _|_|_|_| ";
+	GotoXY(50, 14);
+	cout << " _|       _|    _|       _| _|       ";
+	GotoXY(50, 15);
+	cout << " _|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| ";
+	GotoXY(50, 16);
+	cout << "                                     ";
+}
+
+void printWin()
+{
+
+	//Ve tieu de Win
+	GotoXY(50, 10);
+	cout << "                      ";
+	GotoXY(50, 11);
+	TextColor(14);
+	cout << " _|        _| _| _|_|    _| ";
+	GotoXY(50, 12);
+	cout << " _|        _| _| _| _|   _| ";
+	GotoXY(50, 13);
+	cout << " _|  _|_|  _| _| _|  _|  _| ";
+	GotoXY(50, 14);
+	cout << " _| _|  _| _| _| _|   _| _| ";
+	GotoXY(50, 15);
+	cout << " _|_|    _|_| _| _|    _|_| ";
+	GotoXY(50, 16);
+	cout << "                      ";
 }
