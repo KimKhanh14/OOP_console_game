@@ -153,12 +153,31 @@ void CGAME::loadGame(int temp)
 		updatePosAnimal();
 		if (endGame())
 		{
-			ofstream fo;
-			fo.open("SaveLevel.txt");
-			fo << 1;
-			fo.close();
-			printLose();
-			exitGame();
+			GotoXY(96, 20);
+			cout << "GAME OVER!";
+			GotoXY(88, 21);
+			cout << "    PRESS Y TO RESTART     ";
+			if (_kbhit)
+			{
+				int k = _getch();
+				if (k == 'Y' || k == 'y')
+				{
+					resetGame();
+					GotoXY(96, 20);
+					cout << "          ";
+					GotoXY(88, 21);
+					cout << "         Restart!          ";
+				}
+				else
+				{
+					ofstream fo;
+					fo.open("SaveLevel.txt");
+					fo << 1;
+					fo.close();
+					printLose();
+					exitGame();
+				}
+			}
 		}
 		if (levelUp())
 		{
