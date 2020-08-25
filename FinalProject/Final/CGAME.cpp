@@ -86,6 +86,12 @@ void CGAME::drawGame()
 void CGAME::resetGame()
 {
 	player.Reset();
+	level = 1;
+	updateLevel(bird, 11, level);
+	updateLevel(dinosaur, 21, level);
+	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level);
+	updateLevel(car, 16, level);
 }
 
 void CGAME::exitGame()
@@ -305,42 +311,51 @@ bool CGAME::levelUp()
 
 void printLose()
 {
-		
-			//Ve tieu de Lose
-	GotoXY(50, 10);
+	GotoXY(0, 0);
+	for (int i = 0; i <= HEIGHT; i++)
+	{
+		for (int j = 0; j <= WIDTH+36; j++)
+			cout << " ";
+		cout << endl;
+	}
+	//Ve tieu de Lose
+	GotoXY(49, 10);
 	cout << "                                     ";
-	GotoXY(50, 11);
+	GotoXY(49, 11);
 	TextColor(14);
 	cout << " _|       _|_|_|_| _|_|_|_| _|_|_|_| ";
-	GotoXY(50, 12);
+	GotoXY(49, 12);
 	cout << " _|       _|    _| _|       _|       ";
-	GotoXY(50, 13);
+	GotoXY(49, 13);
 	cout << " _|       _|    _| _|_|_|_| _|_|_|_| ";
-	GotoXY(50, 14);
+	GotoXY(49, 14);
 	cout << " _|       _|    _|       _| _|       ";
-	GotoXY(50, 15);
+	GotoXY(49, 15);
 	cout << " _|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| ";
-	GotoXY(50, 16);
+	GotoXY(49, 16);
 	cout << "                                     ";
 }
 
 void printWin()
 {
+	for (int i = 0; i <= HEIGHT; i++)
+		for (int j = 0; j <= WIDTH; j++)
+			buffer.square(i, j, ' ');
 
 	//Ve tieu de Win
-	GotoXY(50, 10);
+	GotoXY(45, 10);
 	cout << "                      ";
-	GotoXY(50, 11);
+	GotoXY(45, 11);
 	TextColor(14);
 	cout << " _|        _| _| _|_|    _| ";
-	GotoXY(50, 12);
+	GotoXY(45, 12);
 	cout << " _|        _| _| _| _|   _| ";
-	GotoXY(50, 13);
+	GotoXY(45, 13);
 	cout << " _|  _|_|  _| _| _|  _|  _| ";
-	GotoXY(50, 14);
+	GotoXY(45, 14);
 	cout << " _| _|  _| _| _| _|   _| _| ";
-	GotoXY(50, 15);
+	GotoXY(45, 15);
 	cout << " _|_|    _|_| _| _|    _|_| ";
-	GotoXY(50, 16);
+	GotoXY(45, 16);
 	cout << "                      ";
 }
