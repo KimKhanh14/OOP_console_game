@@ -10,7 +10,7 @@ int main()
 	DisableSelection();
 	ShowScrollBar(GetConsoleWindow(), SB_BOTH, 0);
 	system("title CROSSING ROAD");
-
+	PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP|SND_ASYNC);
 	while (1)
 	{
 		printMenu();

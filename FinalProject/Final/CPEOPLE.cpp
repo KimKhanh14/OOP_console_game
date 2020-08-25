@@ -60,6 +60,7 @@ void CPEOPLE::isImpact(vector<CBIRD>& b)
 		else
 		{
 			State = false;
+			b[i].Tell();
 			return;
 		}
 	}
@@ -75,6 +76,7 @@ void CPEOPLE::isImpact(vector<CDINOSAUR>& b)
 		else
 		{
 			State = false;
+			b[i].Tell();
 			return;
 		}
 	}

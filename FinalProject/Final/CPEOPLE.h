@@ -6,6 +6,7 @@
 #include "CAnimal.h"
 #include "CVEHICLE.h"
 #include <vector>
+#include <thread>
 #define lengthP 3
 #define widthP 3
 #define heightO 4
@@ -27,6 +28,7 @@ public:
 	bool isFinish();
 	void Reset();
 	int getY() { return mY; }
+	int getX() { return mX; }
 	void isImpact(vector<CBIRD>& b);
 	void isImpact(vector<CDINOSAUR>& b);
 	void isImpact(vector<CTRUCK>& b);

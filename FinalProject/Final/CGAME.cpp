@@ -85,6 +85,7 @@ void CGAME::drawGame()
 }
 void CGAME::resetGame()
 {
+	PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 	player.Reset();
 	level = 1;
 	updateLevel(bird, 11, level);
@@ -189,11 +190,16 @@ void CGAME::loadGame(int temp)
 		{
 			GotoXY(88, 21);
 			cout << "         LEVEL UP!          ";
+			PlaySound(TEXT("Sounds/Levelup.wav"), NULL, SND_ASYNC);
 			UpLevel();
+			Sleep(1000);
+			PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 		}
 		updatePosPeople();
 		pauseGame();
 		saveGame();
+		GotoXY(88, 21);
+		cout << "                           "; //Erase text
 		Sleep(100);
 	}
 }
@@ -319,20 +325,20 @@ void printLose()
 		cout << endl;
 	}
 	//Ve tieu de Lose
-	GotoXY(49, 10);
+	GotoXY(40, 10);
 	cout << "                                     ";
-	GotoXY(49, 11);
+	GotoXY(40, 11);
 	TextColor(14);
 	cout << " _|       _|_|_|_| _|_|_|_| _|_|_|_| ";
-	GotoXY(49, 12);
+	GotoXY(40, 12);
 	cout << " _|       _|    _| _|       _|       ";
-	GotoXY(49, 13);
+	GotoXY(40, 13);
 	cout << " _|       _|    _| _|_|_|_| _|_|_|_| ";
-	GotoXY(49, 14);
+	GotoXY(40, 14);
 	cout << " _|       _|    _|       _| _|       ";
-	GotoXY(49, 15);
+	GotoXY(40, 15);
 	cout << " _|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| ";
-	GotoXY(49, 16);
+	GotoXY(40, 16);
 	cout << "                                     ";
 }
 
