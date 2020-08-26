@@ -6,11 +6,13 @@ CGAME::CGAME()
 		for (int j = 0; j <= WIDTH; j++)
 			buffer.square(i, j, ' ');
 	level = 1;
-	updateLevel(bird, 11, level);
-	updateLevel(dinosaur, 21, level);
-	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level);
-	updateLevel(car, 16, level);
+	//savedX la toa do da luu trong file
+	int savedX = 0;
+	updateLevel(bird, 11, level, savedX);
+	updateLevel(dinosaur, 21, level, savedX);
+	if (level == 3) updateLevel(truck, 6, level - 1, savedX);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level, savedX);
+	updateLevel(car, 16, level, savedX);
 }
 
 CGAME::~CGAME()
@@ -88,11 +90,12 @@ void CGAME::resetGame()
 	PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 	player.Reset();
 	level = 1;
-	updateLevel(bird, 11, level);
-	updateLevel(dinosaur, 21, level);
-	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level);
-	updateLevel(car, 16, level);
+	int savedX = 0;
+	updateLevel(bird, 11, level, savedX);
+	updateLevel(dinosaur, 21, level, savedX);
+	if (level == 3) updateLevel(truck, 6, level - 1, savedX);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level, savedX);
+	updateLevel(car, 16, level, savedX);
 }
 
 void CGAME::exitGame()
@@ -290,11 +293,12 @@ void CGAME::UpLevel()
 		printWin();
 		exitGame();
 	}
-	updateLevel(bird, 11, level);
-	updateLevel(dinosaur, 21, level);
-	if (level == 3) updateLevel(truck, 6, level - 1);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level);
-	updateLevel(car, 16, level);
+	int savedX = 50;
+	updateLevel(bird, 11, level, savedX);
+	updateLevel(dinosaur, 21, level, savedX);
+	if (level == 3) updateLevel(truck, 6, level - 1, savedX);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level, savedX);
+	updateLevel(car, 16, level, savedX);
 	player.Reset();
 }
 
@@ -364,4 +368,17 @@ void printWin()
 	cout << " _|_|    _|_| _| _|    _|_| ";
 	GotoXY(45, 16);
 	cout << "                      ";
+}
+
+int CGAME::getX_c() {
+	return car[0].getX();
+}
+int CGAME::getX_t() {
+	return truck[0].getX();
+}
+int CGAME::getX_b() {
+	return bird[0].getX();
+}
+int CGAME::getX_d() {
+	return dinosaur[0].getX();
 }

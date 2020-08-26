@@ -10,7 +10,7 @@
 #include "CDRAW.h"
 using namespace std;
 
-#define lengthB 6
+#define lengthB 7
 #define lengthD 8
 
 class CANIMAL

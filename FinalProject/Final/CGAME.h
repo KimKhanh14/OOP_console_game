@@ -16,14 +16,32 @@ using namespace std;
 
 template<class T>
 
-void updateLevel(vector<T>& arr, int lane, int level) 
+//truyen vao level va toa do da luu trong file
+void updateLevel(vector<T>& arr, int lane, int level, int savedX)
 {
-	arr.clear();
-	for (int i = 0; i < level; i++) {
-		T tmp((i)*WIDTH / level, lane);
-		arr.push_back(tmp);
+	//firstX dieu chinh toa do ban dau de khac nhau
+	int firstX;
+	if (lane == 6) firstX = 0;
+	else if (lane == 11) firstX = 10;
+	else if (lane == 16) firstX = 20;
+	else firstX = 30;
+
+	if (level <= 3) {
+		arr.clear();
+		for (int i = 0; i < level; i++) {
+			if (firstX + savedX + (i)*WIDTH / level >= WIDTH - lengthB)
+			{
+				T tmp(firstX + savedX + (i)*WIDTH / level - 80, lane);
+				arr.push_back(tmp);
+			}
+			else {
+				T tmp(firstX + savedX + (i)*WIDTH / level, lane);
+				arr.push_back(tmp);
+			}
+		}
 	}
 }
+
 
 class CGAME
 {
@@ -52,6 +70,12 @@ public:
 	void updatePosPeople();
 	void updatePosVehicle();
 	void updatePosAnimal();
+
+	//ham lay toa do de luu vo file
+	int getX_c();
+	int getX_t();
+	int getX_b();
+	int getX_d();
 };
 
 void printLose();

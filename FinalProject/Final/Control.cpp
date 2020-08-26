@@ -92,10 +92,12 @@ void handle(vector<CBIRD>& bArr, vector<CDINOSAUR>& dArr, vector<CTRUCK>& tArr, 
 //tang so con trong array, CGAME khong
 template<class T>
 void updateLevel(vector<T>& arr, int lane, int level) {
-	arr.clear();
-	for (int i = 0; i < level; i++) {
-		T tmp((i)*WIDTH / level, lane);
-		arr.push_back(tmp);
+	if (level <= 3) {
+		arr.clear();
+		for (int i = 0; i < level; i++) {
+			T tmp((i)*WIDTH / level, lane);
+			arr.push_back(tmp);
+		}
 	}
 }
 
