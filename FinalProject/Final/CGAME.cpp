@@ -5,6 +5,9 @@ CGAME::CGAME()
 	for (int i = 0; i <= HEIGHT; i++)
 		for (int j = 0; j <= WIDTH; j++)
 			buffer.square(i, j, ' ');
+	for (int i = 0; i <= 4; i++)
+		scoreFlag = 0;
+	score = 0;
 	level = 1;
 	//Bird- dino - truck - car - people
 	character_color[0] = 9;
@@ -77,7 +80,7 @@ void CGAME::drawGame()
 	cout << "LEVEL: " << level;
 	TextColor(11);
 	GotoXY(87, 4);
-	cout << "SCORE: ";
+	cout << "SCORE: " << score;
 	TextColor(7);
 	GotoXY(87, 6);
 	cout << "Press W to go straight";
@@ -206,6 +209,7 @@ void CGAME::loadGame(int temp)
 			PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 		}
 		updatePosPeople();
+		updateScore();
 		pauseGame();
 		saveGame();
 		GotoXY(88, 21);
@@ -283,7 +287,14 @@ void CGAME::updatePosPeople()
 	{
 		key = _getch();
 		if (key == 'A' || key == 'a') player.Left();
-		else if (key == 'W' || key == 'w') player.Up();
+		else if (key == 'W' || key == 'w')
+		{
+			/*if (player.getY() == 21 && scoreFlag[0] == 0) scoreFlag[0] += 1;
+			else if(player.getY() == 16 && scoreFlag[1] == 0) scoreFlag[1] += 1;
+			else if (player.getY() == 11 && scoreFlag[2] == 0) scoreFlag[2] += 1;
+			else if (player.getY() == 6 && scoreFlag[1] == 0) scoreFlag[3] += 1;*/
+			player.Up();
+		}
 		else if (key == 'D' || key == 'd') player.Right();
 		else if (key == 'S' || key == 's') player.Down();
 	}
@@ -292,7 +303,7 @@ void CGAME::updatePosPeople()
 void CGAME::UpLevel()
 {
 	level+=1;
-	if (level > 4) {
+	if (level > 3) {
 		ofstream fo;
 		fo.open("SaveLevel.txt");
 		fo << 1;
@@ -357,10 +368,13 @@ void printLose()
 
 void printWin()
 {
+	GotoXY(0, 0);
 	for (int i = 0; i <= HEIGHT; i++)
-		for (int j = 0; j <= WIDTH; j++)
-			buffer.square(i, j, ' ');
-
+	{
+		for (int j = 0; j <= WIDTH + 36; j++)
+			cout << " ";
+		cout << endl;
+	}
 	//Ve tieu de Win
 	GotoXY(45, 10);
 	cout << "                      ";
@@ -377,6 +391,33 @@ void printWin()
 	cout << " _|_|    _|_| _| _|    _|_| ";
 	GotoXY(45, 16);
 	cout << "                      ";
+}
+
+void CGAME::updateScore()
+{
+	if (player.getY() == 21 && scoreFlag == 0)
+	{
+		score += level;
+		scoreFlag = 1;
+	}
+	else
+		if (player.getY() == 16 && scoreFlag == 1)
+		{
+			score += level;
+			scoreFlag = 2;
+		}
+		else
+			if (player.getY() == 11 && scoreFlag == 2)
+			{
+				score += level;
+				scoreFlag = 3;
+			}
+			else
+				if (player.getY() == 6 && scoreFlag == 3)
+				{
+					score += level;
+					scoreFlag = 0;
+				}
 }
 
 int CGAME::getX_c() {
