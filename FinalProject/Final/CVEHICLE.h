@@ -178,6 +178,7 @@ public:
 	int getX() { return mX; }
 	int getY() { return mY; }
 	virtual int getLength() = 0;
+	virtual void Tell() = 0;
 };
 
 class CTRUCK : public CVEHICLE
@@ -187,6 +188,7 @@ public:
 	CTRUCK(int x, int y) : CVEHICLE(x, y) {}
 	void Move(int color);
 	int getLength() { return lengthT; }
+	void Tell();
 };
 
 class CCAR : public CVEHICLE
@@ -196,6 +198,7 @@ public:
 	CCAR(int x, int y) : CVEHICLE(x, y) {}
 	void Move(int color);
 	int getLength() { return lengthC; }
+	void Tell();
 };
 
 

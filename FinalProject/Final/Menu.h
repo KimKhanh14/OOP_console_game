@@ -11,7 +11,8 @@ typedef char str[31];
 
 str options[4] = { "New game", "Load game", "Settings", "Exit game" };
 enum state { UP, DOWN, LEFT, RIGHT, ENTER };
-
+bool isStarted = false;
+int c_color[5] = { 9,10,11,12,15 }; //Bird- dino - truck - car - people
 #define textcolor 15
 #define backgroundcolor 176
 
@@ -115,7 +116,6 @@ void printMenu()
 {
 	int key = menu(options, 4);
 	clrscr();
-	CGAME game;
 	switch (key)
 	{
 	case 0:
@@ -132,7 +132,64 @@ void printMenu()
 	}
 	case 2:
 	{
-		//settings
+		clrscr();
+			GotoXY(0, 0);
+			cout << "<" << (char)196 << " Back to Main Menu";
+			GotoXY(0, 2);
+			TextColor(15);
+			cout << "SETTINGS" << endl;
+			cout << "Color Code: " << endl;
+			TextColor(1);
+			cout << "Dark Blue: " << "1" << endl;
+			TextColor(2);
+			cout << "Dark Green: " << "2" << endl;
+			TextColor(3);
+			cout << "Dark Cyan: " << "3" << endl;
+			TextColor(4);
+			cout << "Dark Red: " << "4" << endl;
+			TextColor(5);
+			cout << "Dark Pink: " << "5" << endl;
+			TextColor(6);
+			cout << "Dark Yellow: " << "6" << endl;
+			TextColor(7);
+			cout << "Dark White: " << "7" << endl;
+			TextColor(8);
+			cout << "Dark Grey: " << "8" << endl;
+			TextColor(9);
+			cout << "Blue: " << "9" << endl;
+			TextColor(10);
+			cout << "Green: " << "10" << endl;
+			TextColor(11);
+			cout << "Cyan: " << "11" << endl;
+			TextColor(12);
+			cout << "Red: " << "12" << endl;
+			TextColor(13);
+			cout << "Pink: " << "13" << endl;
+			TextColor(14);
+			cout << "Yellow: " << "14" << endl;
+			TextColor(15);
+			cout << "White: " << "15" << endl;
+			cout << "No change: -1" << endl << endl;
+			int k;
+			cout << "Bird: ";
+			cin >> k;
+			if (k != -1) c_color[0] = k;
+			cout << "Dinosaur: ";
+			cin >> k;
+			if (k != -1) c_color[1] = k;
+			cout << "Truck: ";
+			cin >> k;
+			if (k != -1) c_color[2] = k;
+			cout << "Car: ";
+			cin >> k;
+			if (k != -1) c_color[3] = k;
+			cout << "People: ";
+			cin >> k;
+			if (k != -1) c_color[4] = k;
+			game.updateColor(c_color);
+			isStarted = true;
+			printMenu();
+			return;
 	}
 	default:
 	{

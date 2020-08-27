@@ -11,7 +11,6 @@
 //#include "CVEHICLE.h"
 #include "Console.h"
 #include "CPEOPLE.h"
-
 using namespace std;
 
 template<class T>
@@ -54,6 +53,7 @@ private:
 	CPEOPLE player; 
 	int level;
 	int key;
+	int character_color[5]; 
 public:
 	CGAME();
 	void drawGame();
@@ -70,7 +70,7 @@ public:
 	void updatePosPeople();
 	void updatePosVehicle();
 	void updatePosAnimal();
-
+	void updateColor(int color[]);
 	//ham lay toa do de luu vo file
 	int getX_c();
 	int getX_t();
@@ -81,4 +81,5 @@ public:
 void printLose();
 void printWin();
 
+extern 	CGAME game;
 #endif

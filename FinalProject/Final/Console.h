@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
-#define ColorCode_Back			0
+#define ColorCode_Black			0
 #define ColorCode_DarkBlue		1
 #define ColorCode_DarkGreen		2
 #define ColorCode_DarkCyan		3

@@ -92,6 +92,7 @@ void CPEOPLE::isImpact(vector<CTRUCK>& b)
 		else
 		{
 			State = false;
+			b[i].Tell();
 			return;
 		}
 	}
@@ -107,6 +108,7 @@ void CPEOPLE::isImpact(vector<CCAR>& b)
 		else
 		{
 			State = false;
+			b[i].Tell();
 			return;
 		}
 	}

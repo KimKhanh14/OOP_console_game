@@ -1,11 +1,18 @@
 #include "CGAME.h"
-
+CGAME game;
 CGAME::CGAME()
 {
 	for (int i = 0; i <= HEIGHT; i++)
 		for (int j = 0; j <= WIDTH; j++)
 			buffer.square(i, j, ' ');
 	level = 1;
+	//Bird- dino - truck - car - people
+	character_color[0] = 9;
+	character_color[1] = 10;
+	character_color[2] = 11;
+	character_color[3] = 12;
+	character_color[4] = 15;
+	
 	//savedX la toa do da luu trong file
 	int savedX = 0;
 	updateLevel(bird, 11, level, savedX);
@@ -119,22 +126,22 @@ void CGAME::startGame()
 		}
 	//Draw Bird
 	for (int i = 0; i < bird.size(); i++)
-		bird[i].Move(9);
+		bird[i].Move(character_color[0]);
 	//Draw Dinosaur
 	for (int i = 0; i < dinosaur.size(); i++)
-		dinosaur[i].Move(10);
+		dinosaur[i].Move(character_color[1]);
 	//Draw Truck
 	for (int i = 0; i < truck.size(); i++)
-		truck[i].Move(11);
+		truck[i].Move(character_color[2]);
 	//Draw Car
 	for (int i = 0; i < car.size(); i++)
-		car[i].Move(12);
+		car[i].Move(character_color[3]);
 	//Draw light
 	light.print(WIDTH, 6);
 	light.print(WIDTH, 16);
 
 	//Draw people
-	player.Draw(15);
+	player.Draw(character_color[4]);
 
 	GotoXY(0, 0);
 	for (int i = 0; i < HEIGHT; i++)
@@ -291,6 +298,8 @@ void CGAME::UpLevel()
 		fo << 1;
 		fo.close();
 		printWin();
+		PlaySound(TEXT("Sounds/Win.wav"), NULL, SND_ASYNC);
+		Sleep(2000);
 		exitGame();
 	}
 	int savedX = 50;
@@ -381,4 +390,10 @@ int CGAME::getX_b() {
 }
 int CGAME::getX_d() {
 	return dinosaur[0].getX();
+}
+
+void CGAME::updateColor(int color[])
+{
+	for (int i = 0; i < 5; i++)
+		this->character_color[i] = color[i];
 }

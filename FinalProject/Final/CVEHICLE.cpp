@@ -114,3 +114,13 @@ void CCAR::Move(int color)
 	buffer.square(y + 3, x + 8, ' ', color);
 
 }
+
+void CCAR::Tell()
+{
+	PlaySound(TEXT("Sounds/Car.wav"), NULL, SND_ASYNC);
+}
+
+void CTRUCK::Tell()
+{
+	PlaySound(TEXT("Sounds/Truck.wav"), NULL, SND_ASYNC);
+}
