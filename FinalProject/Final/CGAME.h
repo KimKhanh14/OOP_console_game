@@ -6,6 +6,7 @@
 //#include <Windows.h>
 #include <vector>
 #include <thread>
+#include <string>
 //#include "CVEHICLE.h"
 //#include "CAnimal.h"
 //#include "CVEHICLE.h"
@@ -20,18 +21,18 @@ template<class T>
 void updateLevel(vector<T>& arr, int lane, int level, int savedX)
 {
 	//firstX dieu chinh toa do ban dau de khac nhau
-	int firstX;
-	if (lane == 6) firstX = 0;
-	else if (lane == 11) firstX = 10;
-	else if (lane == 16) firstX = 20;
-	else firstX = 30;
+	int firstX, l;
+	if (lane == 6) { firstX = 0; l = lengthT; }
+	else if (lane == 11) { firstX = 10; l = lengthB; }
+	else if (lane == 16) { firstX = 20; l = lengthC; }
+	else { firstX = 30; l = lengthD; }
 
 	if (level <= 3) {
 		arr.clear();
 		for (int i = 0; i < level; i++) {
-			if (firstX + savedX + (i)*WIDTH / level >= WIDTH - lengthB)
+			if (firstX + savedX + (i)*WIDTH / level >= WIDTH - l)
 			{
-				T tmp(firstX + savedX + (i)*WIDTH / level - 80, lane);
+				T tmp(firstX + savedX + (i)*WIDTH / level - (WIDTH - l), lane);
 				arr.push_back(tmp);
 			}
 			else {
@@ -67,7 +68,7 @@ public:
 	void loadGame(int temp);
 	void saveGame();
 	void pauseGame();
-	void UpLevel();
+	void UpLevel(int& temp, int playerX, int playerY, int truckX, int birdX, int carX, int dinosaurX);
 	bool endGame();
 	bool levelUp();
 	void updatePosPeople();
@@ -80,6 +81,8 @@ public:
 	int getX_t();
 	int getX_b();
 	int getX_d();
+
+	void readFile(int temp, int& level, int& score, int& playerX, int& playerY, int& truckX, int& birdX, int& carX, int& dinosaurX);
 };
 
 void printLose();

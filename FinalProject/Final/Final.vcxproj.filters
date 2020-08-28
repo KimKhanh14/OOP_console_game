@@ -90,4 +90,9 @@
       <Filter>Resource Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="StartGame.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

@@ -33,5 +33,10 @@ public:
 	void isImpact(vector<CDINOSAUR>& b);
 	void isImpact(vector<CTRUCK>& b);
 	void isImpact(vector<CCAR>& b);
+
+	void update(int x, int y) {
+		mX = x;
+		mY = y;
+	}
 };
 #endif

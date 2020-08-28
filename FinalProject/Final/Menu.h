@@ -124,11 +124,11 @@ void printMenu()
 	}
 	case 1:
 	{
-		ifstream fi;
+		/*ifstream fi;
 		fi.open("SaveLevel.txt");
 		int temp;
-		fi >> temp;
-		game.loadGame(temp-1);
+		fi >> temp;*/
+		game.loadGame(1);
 	}
 	case 2:
 	{

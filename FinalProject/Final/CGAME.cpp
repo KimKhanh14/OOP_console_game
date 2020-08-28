@@ -7,8 +7,7 @@ CGAME::CGAME()
 			buffer.square(i, j, ' ');
 	for (int i = 0; i <= 4; i++)
 		scoreFlag = 0;
-	score = 0;
-	level = 1;
+	
 	//Bird- dino - truck - car - people
 	character_color[0] = 9;
 	character_color[1] = 10;
@@ -16,13 +15,15 @@ CGAME::CGAME()
 	character_color[3] = 12;
 	character_color[4] = 15;
 	
-	//savedX la toa do da luu trong file
-	int savedX = 0;
-	updateLevel(bird, 11, level, savedX);
-	updateLevel(dinosaur, 21, level, savedX);
-	if (level == 3) updateLevel(truck, 6, level - 1, savedX);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level, savedX);
-	updateLevel(car, 16, level, savedX);
+	int playerX, playerY, truckX, birdX, carX, dinosaurX;
+	readFile(0, level, score, playerX, playerY, truckX, birdX, carX, dinosaurX);
+	if (level == 3) updateLevel(truck, 6, level - 1, truckX);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level, truckX);
+	updateLevel(bird, 11, level, birdX);
+	updateLevel(car, 16, level, carX);
+	updateLevel(dinosaur, 21, level, dinosaurX);
+
+	player.update(playerX, playerY);
 }
 
 CGAME::~CGAME()
@@ -162,8 +163,10 @@ void CGAME::startGame()
 
 void CGAME::loadGame(int temp)
 {
-	level = temp;
-	UpLevel();
+	int playerX, playerY, truckX, birdX, carX, diosaurX;
+	readFile(temp, level, score, playerX, playerY, truckX, birdX, carX, diosaurX);
+	level--;
+	UpLevel(temp, playerX, playerY, truckX, birdX, carX, diosaurX);
 	int k;
 	while (1)
 	{
@@ -190,10 +193,10 @@ void CGAME::loadGame(int temp)
 				}
 				else
 				{
-					ofstream fo;
+					/*ofstream fo;
 					fo.open("SaveLevel.txt");
 					fo << 1;
-					fo.close();
+					fo.close();*/
 					printLose();
 					exitGame();
 				}
@@ -204,7 +207,7 @@ void CGAME::loadGame(int temp)
 			GotoXY(88, 21);
 			cout << "         LEVEL UP!          ";
 			PlaySound(TEXT("Sounds/Levelup.wav"), NULL, SND_ASYNC);
-			UpLevel();
+			UpLevel(temp, playerX, playerY, truckX, birdX, carX, diosaurX);
 			Sleep(1000);
 			PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 		}
@@ -223,8 +226,21 @@ void CGAME::saveGame()
 	if (key == 'E' || key == 'e')
 	{
 		ofstream fo;
-		fo.open("SaveLevel.txt");
-		fo << level;
+		GotoXY(88, 19);
+		cout << "File: ";
+		string str;
+		GotoXY(88, 20);
+		getline(cin, str);
+		fo.open(str);
+		fo << level << endl;
+		fo << score << endl;
+		fo << player.getX() << endl;
+		fo << player.getY() << endl;
+		fo << getX_t() << endl;
+		fo << getX_b() << endl;
+		fo << getX_c() << endl;
+		fo << getX_d();
+
 		GotoXY(88, 21);
 		cout << "         Saved!         ";
 		fo.close();
@@ -300,26 +316,29 @@ void CGAME::updatePosPeople()
 	}
 }
 
-void CGAME::UpLevel()
+void CGAME::UpLevel(int& temp, int playerX, int playerY, int truckX, int birdX, int carX, int dinosaurX)
 {
 	level+=1;
 	if (level > 3) {
-		ofstream fo;
+		/*ofstream fo;
 		fo.open("SaveLevel.txt");
 		fo << 1;
-		fo.close();
+		fo.close();*/
 		printWin();
 		PlaySound(TEXT("Sounds/Win.wav"), NULL, SND_ASYNC);
 		Sleep(2000);
 		exitGame();
 	}
-	int savedX = 50;
-	updateLevel(bird, 11, level, savedX);
-	updateLevel(dinosaur, 21, level, savedX);
-	if (level == 3) updateLevel(truck, 6, level - 1, savedX);	//level 3 -> 2 trucks
-	else updateLevel(truck, 6, level, savedX);
-	updateLevel(car, 16, level, savedX);
-	player.Reset();
+	updateLevel(bird, 11, level, birdX);
+	updateLevel(dinosaur, 21, level, dinosaurX);
+	if (level == 3) updateLevel(truck, 6, level - 1, truckX);	//level 3 -> 2 trucks
+	else updateLevel(truck, 6, level, truckX);
+	updateLevel(car, 16, level, carX);
+	if (temp == 1) {
+		player.update(playerX, playerY);
+		temp = -1;
+	}
+	else player.Reset();
 }
 
 bool CGAME::endGame()
@@ -421,20 +440,44 @@ void CGAME::updateScore()
 }
 
 int CGAME::getX_c() {
-	return car[0].getX();
+	return car[0].getX()-20;
 }
 int CGAME::getX_t() {
 	return truck[0].getX();
 }
 int CGAME::getX_b() {
-	return bird[0].getX();
+	return bird[0].getX()-10;
 }
 int CGAME::getX_d() {
-	return dinosaur[0].getX();
+	return dinosaur[0].getX()-30;
 }
 
 void CGAME::updateColor(int color[])
 {
 	for (int i = 0; i < 5; i++)
 		this->character_color[i] = color[i];
+}
+
+void CGAME::readFile(int temp, int& level, int& score, int& playerX, int& playerY, int& truckX, int& birdX, int& carX, int& dinosaurX) {
+
+
+	ifstream fo;
+	if (temp == 0) fo.open("StartGame.txt");
+	else {
+		cout << "File: ";
+		string str;
+		getline(cin, str);
+		fo.open(str);
+		if (!fo.is_open()) cout << "Fail";
+	}
+	fo >> level;
+	fo >> score;
+	fo >> playerX;
+	fo >> playerY;
+	fo >> truckX;
+	fo >> birdX;
+	fo >> carX;
+	fo >> dinosaurX;
+
+	fo.close();
 }
