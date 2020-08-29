@@ -57,7 +57,7 @@ private:
 	int key;
 	int character_color[5]; 
 	int score;
-	int  scoreFlag;
+	int scoreFlag;
 public:
 	CGAME();
 	void drawGame();
@@ -85,6 +85,7 @@ public:
 	void readFile(int temp, int& level, int& score, int& playerX, int& playerY, int& truckX, int& birdX, int& carX, int& dinosaurX);
 };
 
+void clearScreen();
 void printLose();
 void printWin();
 

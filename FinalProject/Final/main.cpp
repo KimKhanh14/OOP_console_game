@@ -1,5 +1,4 @@
 #include "Console.h"
-//#include "Control.h"
 #include "CGAME.h"
 #include "Menu.h"
 

@@ -1,12 +1,14 @@
 #include "CGAME.h"
+
 CGAME game;
+
 CGAME::CGAME()
 {
 	for (int i = 0; i <= HEIGHT; i++)
 		for (int j = 0; j <= WIDTH; j++)
 			buffer.square(i, j, ' ');
-	for (int i = 0; i <= 4; i++)
-		scoreFlag = 0;
+
+	scoreFlag = 0; 
 	
 	//Bird- dino - truck - car - people
 	character_color[0] = 9;
@@ -16,6 +18,7 @@ CGAME::CGAME()
 	character_color[4] = 15;
 	
 	int playerX, playerY, truckX, birdX, carX, dinosaurX;
+
 	readFile(0, level, score, playerX, playerY, truckX, birdX, carX, dinosaurX);
 	if (level == 3) updateLevel(truck, 6, level - 1, truckX);	//level 3 -> 2 trucks
 	else updateLevel(truck, 6, level, truckX);
@@ -101,6 +104,8 @@ void CGAME::resetGame()
 	PlaySound(TEXT("Sounds/Theme.wav"), NULL, SND_LOOP | SND_ASYNC);
 	player.Reset();
 	level = 1;
+	score = 0;
+	scoreFlag = 0;
 	int savedX = 0;
 	updateLevel(bird, 11, level, savedX);
 	updateLevel(dinosaur, 21, level, savedX);
@@ -193,10 +198,6 @@ void CGAME::loadGame(int temp)
 				}
 				else
 				{
-					/*ofstream fo;
-					fo.open("SaveLevel.txt");
-					fo << 1;
-					fo.close();*/
 					printLose();
 					exitGame();
 				}
@@ -226,10 +227,11 @@ void CGAME::saveGame()
 	if (key == 'E' || key == 'e')
 	{
 		ofstream fo;
-		GotoXY(88, 19);
+		clearScreen();
+		GotoXY(0, 0);
 		cout << "File: ";
 		string str;
-		GotoXY(88, 20);
+		GotoXY(7, 0);
 		getline(cin, str);
 		fo.open(str);
 		fo << level << endl;
@@ -241,7 +243,7 @@ void CGAME::saveGame()
 		fo << getX_c() << endl;
 		fo << getX_d();
 
-		GotoXY(88, 21);
+		GotoXY(7, 1);
 		cout << "         Saved!         ";
 		fo.close();
 		exitGame();
@@ -303,14 +305,7 @@ void CGAME::updatePosPeople()
 	{
 		key = _getch();
 		if (key == 'A' || key == 'a') player.Left();
-		else if (key == 'W' || key == 'w')
-		{
-			/*if (player.getY() == 21 && scoreFlag[0] == 0) scoreFlag[0] += 1;
-			else if(player.getY() == 16 && scoreFlag[1] == 0) scoreFlag[1] += 1;
-			else if (player.getY() == 11 && scoreFlag[2] == 0) scoreFlag[2] += 1;
-			else if (player.getY() == 6 && scoreFlag[1] == 0) scoreFlag[3] += 1;*/
-			player.Up();
-		}
+		else if (key == 'W' || key == 'w') player.Up();
 		else if (key == 'D' || key == 'd') player.Right();
 		else if (key == 'S' || key == 's') player.Down();
 	}
@@ -320,10 +315,6 @@ void CGAME::UpLevel(int& temp, int playerX, int playerY, int truckX, int birdX, 
 {
 	level+=1;
 	if (level > 3) {
-		/*ofstream fo;
-		fo.open("SaveLevel.txt");
-		fo << 1;
-		fo.close();*/
 		printWin();
 		PlaySound(TEXT("Sounds/Win.wav"), NULL, SND_ASYNC);
 		Sleep(2000);
@@ -358,15 +349,20 @@ bool CGAME::levelUp()
 	return false;
 }
 
-void printLose()
+void clearScreen()
 {
 	GotoXY(0, 0);
 	for (int i = 0; i <= HEIGHT; i++)
 	{
-		for (int j = 0; j <= WIDTH+36; j++)
+		for (int j = 0; j <= WIDTH + 36; j++)
 			cout << " ";
 		cout << endl;
 	}
+}
+
+void printLose()
+{
+	clearScreen();
 	//Ve tieu de Lose
 	GotoXY(40, 10);
 	cout << "                                     ";
@@ -387,13 +383,7 @@ void printLose()
 
 void printWin()
 {
-	GotoXY(0, 0);
-	for (int i = 0; i <= HEIGHT; i++)
-	{
-		for (int j = 0; j <= WIDTH + 36; j++)
-			cout << " ";
-		cout << endl;
-	}
+	clearScreen();
 	//Ve tieu de Win
 	GotoXY(45, 10);
 	cout << "                      ";
@@ -464,7 +454,10 @@ void CGAME::readFile(int temp, int& level, int& score, int& playerX, int& player
 	ifstream fo;
 	if (temp == 0) fo.open("StartGame.txt");
 	else {
+		clearScreen();
+		GotoXY(0, 0);
 		cout << "File: ";
+		GotoXY(7, 0);
 		string str;
 		getline(cin, str);
 		fo.open(str);
@@ -478,6 +471,6 @@ void CGAME::readFile(int temp, int& level, int& score, int& playerX, int& player
 	fo >> birdX;
 	fo >> carX;
 	fo >> dinosaurX;
-
 	fo.close();
+	clearScreen();
 }
