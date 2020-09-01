@@ -42,30 +42,30 @@ int menu(str options[4], int n)
 		clrscr();
 		//Ve tieu de Crossing Road
 		GotoXY(25, 1);
-		TextColor(14);
-		cout << "_|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| _| _|      _|  _|_|_|_|";
+		TextColor(11);
+		cout << "|=|=|=|=| |=|=|=|=|  |=|=|=|=| |=|=|=|=| |=|=|=|=| |=| |=|     |=| |=|=|=|=|";
 		GotoXY(25, 2);
-		cout << "_|       _|    _| _|    _| _|       _|       _| _|_|    _|  _|  ";
+		cout << "|=|       |=|    |=| |=|   |=| |=|       |=|       |=| |=|=|   |=| |=|      ";
 		GotoXY(25, 3);
-		cout << "_|       _|_|_|_| _|    _| _|_|_|_| _|_|_|_| _| _|  _|  _|  _|  _|_|_|";
+		cout << "|=|       |=|=|=|=|  |=|   |=| |=|=|=|=| |=|=|=|=| |=| |=| |=| |=| |=| |=|=|=|";
 		GotoXY(25, 4);
-		cout << "_|       _|  _|   _|    _|       _|       _| _| _|    _|_|  _|    _|";
+		cout << "|=|       |=|  |=|   |=|   |=|       |=|       |=| |=| |=|   |=|=| |=|   |=|";
 		GotoXY(25, 5);
-		cout << "_|_|_|_| _|    _| _|_|_|_| _|_|_|_| _|_|_|_| _| _|      _|  _|_|_|_|";
+		cout << "|=|=|=|=| |=|    |=| |=|=|=|=| |=|=|=|=| |=|=|=|=| |=| |=|     |=| |=|=|=|=|";
 
 		GotoXY(40, 8);
-		cout << "_|_|_|_| _|_|_|_|     _|     _|_|_|_|";
+		cout << "|=|=|=|=|  |=|=|=|=|     |=|     |=|=|=|=|";
 		GotoXY(40, 9);
-		cout << "_|    _| _|    _|   _| _|    _|     _|";
+		cout << "|=|    |=| |=|   |=|   |=| |=|   |=|     |=|";
 		GotoXY(40, 10);
-		cout << "_|_|_|_| _|    _| _|_|_|_|_| _|     _|";
+		cout << "|=|=|=|=|  |=|   |=| |=|=|=|=|=| |=|     |=|";
 		GotoXY(40, 11);
-		cout << "_|  _|   _|    _| _|      _| _|     _|";
+		cout << "|=|  |=|   |=|   |=| |=|     |=| |=|     |=|";
 		GotoXY(40, 12);
-		cout << "_|    _| _|_|_|_| _|      _| _|_|_|_|";
+		cout << "|=|    |=| |=|=|=|=| |=|     |=| |=|=|=|=|";
 		//Ve khung menu
 		TextColor(textcolor);
-		GotoXY(56, 18);
+		GotoXY(57, 18);
 		cout << "MENU";
 		//Ve options
 		for (int i = 0; i < n; i++)
@@ -118,21 +118,17 @@ void printMenu()
 	clrscr();
 	switch (key)
 	{
-	case 0:
-	{
+		case 0:
+		{
 		game.loadGame(0);
-	}
-	case 1:
-	{
-		/*ifstream fi;
-		fi.open("SaveLevel.txt");
-		int temp;
-		fi >> temp;*/
+		}
+		case 1:
+		{
 		game.loadGame(1);
-	}
-	case 2:
-	{
-		clrscr();
+		}
+		case 2:
+		{
+			clrscr();
 			GotoXY(0, 0);
 			cout << "<" << (char)196 << " Back to Main Menu";
 			GotoXY(0, 2);
@@ -190,11 +186,11 @@ void printMenu()
 			isStarted = true;
 			printMenu();
 			return;
-	}
-	default:
-	{
+		}
+		default:
+		{
 		exit(0);
-	}
+		}
 	}
 }
 

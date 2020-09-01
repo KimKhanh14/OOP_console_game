@@ -1,15 +1,10 @@
 #ifndef _CGAME_H
 #define _CGAME_H
 
-//#include <iostream>
 #include <fstream>
-//#include <Windows.h>
 #include <vector>
 #include <thread>
 #include <string>
-//#include "CVEHICLE.h"
-//#include "CAnimal.h"
-//#include "CVEHICLE.h"
 #include "Console.h"
 #include "CPEOPLE.h"
 

@@ -52,7 +52,6 @@ void CGAME::drawGame()
 			GotoXY(86, i);
 			cout << (char)179;
 		}
-
 	}
 	GotoXY(86, HEIGHT - 1);
 	cout << (char)192;
@@ -254,12 +253,34 @@ void CGAME::pauseGame()
 {
 	if (key == 'P' || key == 'p')
 	{
-		GotoXY(88, 21);
-		cout << "PRESS P 2 TIMES TO CONTINUE";
+		ofstream fo;
+		clearScreen();
+		GotoXY(0, 0);
+		cout << "File: ";
+		string str;
+		GotoXY(7, 0);
+		getline(cin, str);
+		fo.open(str);
+		fo << level << endl;
+		fo << score << endl;
+		fo << player.getX() << endl;
+		fo << player.getY() << endl;
+		fo << getX_t() << endl;
+		fo << getX_b() << endl;
+		fo << getX_c() << endl;
+		fo << getX_d();
+
+		GotoXY(1, 1);
+		cout << "Saved!";
+		fo.close();
+		GotoXY(1, 2);
+		cout << "PRESS ANY KEY TO CONTINUE";
+		GotoXY(1, 3);
+		cout << "PRESS E TO EXIT";
 		int key1 = _getch();
-		if(key1!='P' || key1!='p')
+		if(key1=='E' || key1=='e')
 		{
-			key1 = _getch();
+			exitGame();
 		}
 		GotoXY(88, 21);
 		cout << "                            ";
@@ -367,16 +388,16 @@ void printLose()
 	GotoXY(40, 10);
 	cout << "                                     ";
 	GotoXY(40, 11);
-	TextColor(14);
-	cout << " _|       _|_|_|_| _|_|_|_| _|_|_|_| ";
+	TextColor(11);
+	cout << " |=|       |=|=|=|=| |=|=|=|=| |=|=|=|=| ";
 	GotoXY(40, 12);
-	cout << " _|       _|    _| _|       _|       ";
+	cout << " |=|       |=|   |=| |=|       |=|       ";
 	GotoXY(40, 13);
-	cout << " _|       _|    _| _|_|_|_| _|_|_|_| ";
+	cout << " |=|       |=|   |=| |=|=|=|=| |=|=|=|=| ";
 	GotoXY(40, 14);
-	cout << " _|       _|    _|       _| _|       ";
+	cout << " |=|       |=|   |=|       |=| |=|       ";
 	GotoXY(40, 15);
-	cout << " _|_|_|_| _|_|_|_| _|_|_|_| _|_|_|_| ";
+	cout << " |=|=|=|=| |=|=|=|=| |=|=|=|=| |=|=|=|=| ";
 	GotoXY(40, 16);
 	cout << "                                     ";
 }
@@ -388,16 +409,16 @@ void printWin()
 	GotoXY(45, 10);
 	cout << "                      ";
 	GotoXY(45, 11);
-	TextColor(14);
-	cout << " _|        _| _| _|_|    _| ";
+	TextColor(11);
+	cout << " |=|         |=| |=| |=|=|    |=| ";
 	GotoXY(45, 12);
-	cout << " _|        _| _| _| _|   _| ";
+	cout << " |=|         |=| |=| |=||=|   |=| ";
 	GotoXY(45, 13);
-	cout << " _|  _|_|  _| _| _|  _|  _| ";
+	cout << " |=|   |=|   |=| |=| |=|  |=| |=| ";
 	GotoXY(45, 14);
-	cout << " _| _|  _| _| _| _|   _| _| ";
+	cout << " |=| |=| |=| |=| |=| |=|   |=||=| ";
 	GotoXY(45, 15);
-	cout << " _|_|    _|_| _| _|    _|_| ";
+	cout << " |=|=|     |=|=| |=| |=|    |=|=| ";
 	GotoXY(45, 16);
 	cout << "                      ";
 }

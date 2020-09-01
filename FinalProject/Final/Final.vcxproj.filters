@@ -19,9 +19,6 @@
     <Filter Include="Resource Files\CDRAW">
       <UniqueIdentifier>{315267ff-0bde-4c40-8448-c43d6d091525}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Console">
-      <UniqueIdentifier>{4518ccec-ca20-48bf-a578-1ac693cea223}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\CVEHICLE">
       <UniqueIdentifier>{185456c4-f8d2-4cc6-bae8-e5e5a7dfe7dd}</UniqueIdentifier>
     </Filter>
@@ -31,11 +28,11 @@
     <Filter Include="Resource Files\CGAME">
       <UniqueIdentifier>{5b921a24-3f6f-4af5-a81f-b9861ea5ee1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Control">
-      <UniqueIdentifier>{ab150634-bc8f-409a-9a30-87e7e9772341}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Menu">
       <UniqueIdentifier>{efe19a4f-9772-42df-8323-bd28289a5123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Console">
+      <UniqueIdentifier>{90a6c2fa-a977-40ef-88ba-36882fca01b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,20 +45,17 @@
     <ClCompile Include="CAnimal.cpp">
       <Filter>Resource Files\CANIMAL</Filter>
     </ClCompile>
-    <ClCompile Include="Console.cpp">
-      <Filter>Resource Files\Console</Filter>
-    </ClCompile>
     <ClCompile Include="CVEHICLE.cpp">
       <Filter>Resource Files\CVEHICLE</Filter>
     </ClCompile>
     <ClCompile Include="CGAME.cpp">
       <Filter>Resource Files\CGAME</Filter>
     </ClCompile>
-    <ClCompile Include="Control.cpp">
-      <Filter>Resource Files\Control</Filter>
-    </ClCompile>
     <ClCompile Include="CPEOPLE.cpp">
       <Filter>Resource Files\CPEOPLE</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Resource Files\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,23 +65,20 @@
     <ClInclude Include="CDRAW.h">
       <Filter>Resource Files\CDRAW</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Resource Files\Console</Filter>
-    </ClInclude>
     <ClInclude Include="CVEHICLE.h">
       <Filter>Resource Files\CVEHICLE</Filter>
     </ClInclude>
     <ClInclude Include="CGAME.h">
       <Filter>Resource Files\CGAME</Filter>
     </ClInclude>
-    <ClInclude Include="Control.h">
-      <Filter>Resource Files\Control</Filter>
-    </ClInclude>
     <ClInclude Include="CPEOPLE.h">
       <Filter>Resource Files\CPEOPLE</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Resource Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Resource Files\Console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
