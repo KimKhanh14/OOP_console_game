@@ -475,14 +475,26 @@ void CGAME::readFile(int temp, int& level, int& score, int& playerX, int& player
 	ifstream fo;
 	if (temp == 0) fo.open("StartGame.txt");
 	else {
-		clearScreen();
-		GotoXY(0, 0);
-		cout << "File: ";
-		GotoXY(7, 0);
-		string str;
-		getline(cin, str);
-		fo.open(str);
-		if (!fo.is_open()) cout << "Fail";
+		int opt=0;
+		do {
+			clearScreen();
+			GotoXY(0, 0);
+			cout << "File: ";
+			GotoXY(7, 0);
+			string str;
+			getline(cin, str);
+			fo.open(str);
+			if (!fo.is_open()) {
+				cout << "Can't open file!\n\n";
+				cout << "1. Input file again\n";
+				cout << "2. Start Game\n\n";
+				cout << "Your option: ";
+				cin >> opt;
+				cin.ignore();
+				if (opt == 2) fo.open("StartGame.txt");
+			}
+			else break;
+		} while (opt != 2);
 	}
 	fo >> level;
 	fo >> score;
