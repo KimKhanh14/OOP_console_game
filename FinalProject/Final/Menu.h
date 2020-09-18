@@ -181,6 +181,7 @@ void printMenu()
 			if (k != -1) c_color[3] = k;
 			cout << "People: ";
 			cin >> k;
+			cin.ignore();
 			if (k != -1) c_color[4] = k;
 			game.updateColor(c_color);
 			isStarted = true;
